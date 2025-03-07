@@ -13,8 +13,17 @@ import java.util.List;
 @RequestMapping("greet")
 public class GreetingController {
 
+    //============================UC8==============================================//
+    @DeleteMapping("/delete/{id}")
+    public String delete(@PathVariable Long id){
+        return greetingService.delete(id);
+    }
 
-
+//==================================UC7========================================================//
+    @PostMapping("/edit/{id}")
+    public MessageDTO editById(@RequestBody MessageDTO message, @PathVariable Long id){
+        return greetingService.editById(message, id);
+    }
 
 
     //================================UC6=============================================//

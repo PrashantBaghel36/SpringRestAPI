@@ -43,6 +43,27 @@ public class GreetingService {
         return list;
     }
 
+    public MessageDTO editById(MessageDTO message, Long id){
 
+        Greeting m = greetingMessageRepository.findById(id).orElseThrow(() -> new RuntimeException("No Message was found with given id"));
+
+        m.setMessage(message.getMessage());
+
+        greetingMessageRepository.save(m);
+
+        MessageDTO m2 = new MessageDTO(m.getMessage());
+        m2.setId(m.getId());
+
+        return m2;
+    }
+    public String delete(Long id){
+
+        Greeting m = greetingMessageRepository.findById(id).orElseThrow(() -> new RuntimeException("Cannot find message with given id"));
+
+        greetingMessageRepository.delete(m);
+
+        return "Message Deleted";
+
+    }
 
 }
